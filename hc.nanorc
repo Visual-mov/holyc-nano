@@ -1,0 +1,32 @@
+## syntax highlighting for HolyC / C+
+
+syntax hc "\.(HC|HH)$"
+comment "//"
+
+# Constants.
+color brightred "\<[A-Z_][0-9A-Z_]+\>"
+# Labels.
+color brightmagenta "^[[:space:]]*[A-Z_a-z]+:[[:space:]]*$"
+
+color green "\<(U0|U8|U16|U32|U64|Bool| sizeof|enum|void|auto|static|const|struct|union|typedef|extern|(un)?signed|inline)\>"
+color green "\<([[:lower:]][[:lower:]_]*| I(0|8|16|32|64)) |_F64\>"
+color green "\<(class|namespace|template|public|protected|private|typename|this|friend|virtual|override|using|mutable|volatile|register|explicit)\>"
+color brightyellow "\<(for|if|while|do|else|case|default|switch)\>"
+color brightyellow "\<(try|throw|catch|operator|new|delete)\>"
+color magenta "\<(goto|continue|break|return)\>"
+color brightmagenta "'([^'\]|(\\["'abfnrtv\\]))'" "'\\(([0-3]?[0-7]{1,2}))'" "'\\x[0-9A-Fa-f]{1,2}'"
+
+color cyan "__attribute__[[:space:]]*\(\([^)]*\)\)" "__(aligned|asm|builtin|hidden|inline|packed|restrict|section|typeof|weak)__"
+
+color brightyellow ""([^"]|\\")*"" "#[[:space:]]*include[[:space:]]+<[^[:blank:]=]*>"
+
+# Preprocessor directives.
+color brightcyan start="^[[:space:]]*#[[:space:]]*(if(n?def)?|elif|warning|error|pragma)\>" end="(\`|[^\\])$"
+color brightcyan "^[[:space:]]*#[[:space:]]*(define|else|endif|include(_next)?|undef)\>"
+
+# Comments.
+color brightblue "//.*"
+color brightblue start="/\*" end="\*/"
+
+# Trailing whitespace.
+color ,green "[[:space:]]+$"

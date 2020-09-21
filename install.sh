@@ -1,8 +1,9 @@
-# not finished
-#cp ./hc.nanorc /usr/share/nano/
-echo "~/.nanorc"
-if [ -f "~/.nanorc" ]; then
-    cat ./.nanorc >> ~/.nanorc
+sudo cp ./hc.nanorc /usr/share/nano/
+if [ -f "$HOME/.nanorc" ]; then
+    if ! grep -qF "$(cat .nanorc)" ~/.nanorc; then
+        echo "" >> ~/.nanorc
+        cat .nanorc >> ~/.nanorc
+    fi
 else
     cp ./.nanorc ~
 fi
